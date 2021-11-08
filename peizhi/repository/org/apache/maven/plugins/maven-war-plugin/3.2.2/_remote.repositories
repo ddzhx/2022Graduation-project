@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Jun 16 13:15:38 CST 2021
+maven-war-plugin-3.2.2.jar>central=
+maven-war-plugin-3.2.2.pom>central=
+maven-war-plugin-3.2.2.jar>alimaven=
+maven-war-plugin-3.2.2.pom>alimaven=

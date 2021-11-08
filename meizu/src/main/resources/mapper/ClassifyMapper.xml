@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javameizu.meizu.dao.ClassifyMapper">
+    <resultMap id="BaseResultMap" type="com.javameizu.meizu.domain.Classify">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="productname" jdbcType="VARCHAR" property="productname"/>
+        <result column="productpic" jdbcType="VARCHAR" property="productpic"/>
+        <result column="producttpye" jdbcType="TINYINT" property="producttpye"/>
+        <result column="productcreate" jdbcType="TIMESTAMP" property="productcreate"/>
+    </resultMap>
+    
+    <insert id="insert" parameterType="com.javameizu.meizu.domain.Classify">
+        insert into classify
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                id,
+            </if>
+            <if test="productname!=null">
+                productname,
+            </if>
+            <if test="productpic!=null">
+                productpic,
+            </if>
+            <if test="producttpye!=null">
+                producttpye,
+            </if>
+            <if test="productcreate!=null">
+                productcreate,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+            <if test="productname!=null">
+                #{productname},
+            </if>
+            <if test="productpic!=null">
+                #{productpic},
+            </if>
+            <if test="producttpye!=null">
+                #{producttpye},
+            </if>
+            <if test="productcreate!=null">
+                #{productcreate},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="allClassify" resultMap="BaseResultMap">
+        select
+            id,productname,productpic,producttpye,productcreate
+        from classify
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from classify where id=#{id}
+    </delete>
+
+</mapper>

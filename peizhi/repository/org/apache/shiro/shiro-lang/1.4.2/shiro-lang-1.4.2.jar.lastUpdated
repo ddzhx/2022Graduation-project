@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Jun 23 16:48:33 CST 2021
+http\://maven.aliyun.com/nexus/content/groups/public/.error=Could not transfer artifact org.apache.shiro\:shiro-lang\:jar\:1.4.2 from/to alimaven (http\://maven.aliyun.com/nexus/content/groups/public/)\: E\:\\webapp\\repository\\org\\apache\\shiro\\shiro-lang\\1.4.2\\shiro-lang-1.4.2.jar.part.lock (\u53E6\u4E00\u4E2A\u7A0B\u5E8F\u6B63\u5728\u4F7F\u7528\u6B64\u6587\u4EF6\uFF0C\u8FDB\u7A0B\u65E0\u6CD5\u8BBF\u95EE\u3002)
+@default-alimaven-http\://maven.aliyun.com/nexus/content/groups/public/.lastUpdated=1624438113657

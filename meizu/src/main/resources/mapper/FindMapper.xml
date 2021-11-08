@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javameizu.meizu.dao.FindMapper">
+    <resultMap id="BaseResultMap" type="com.javameizu.meizu.domain.Find">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="findpic" jdbcType="VARCHAR" property="findpic"/>
+        <result column="findtitle" jdbcType="VARCHAR" property="findtitle"/>
+        <result column="findread" jdbcType="VARCHAR" property="findread"/>
+        <result column="findcreate" jdbcType="TIMESTAMP" property="findcreate"/>
+    </resultMap>
+    
+    <insert id="insert" parameterType="com.javameizu.meizu.domain.Find">
+        insert into find
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                id,
+            </if>
+            <if test="name!=null">
+                name,
+            </if>
+            <if test="findpic!=null">
+                findpic,
+            </if>
+            <if test="findtitle!=null">
+                findtitle,
+            </if>
+            <if test="findread!=null">
+                findread,
+            </if>
+            <if test="findcreate!=null">
+                findcreate,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+            <if test="name!=null">
+                #{name},
+            </if>
+            <if test="findpic!=null">
+                #{findpic},
+            </if>
+            <if test="findtitle!=null">
+                #{findtitle},
+            </if>
+            <if test="findread!=null">
+                #{findread},
+            </if>
+            <if test="findcreate!=null">
+                #{findcreate},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="allFind" resultMap="BaseResultMap">
+        select
+            id,name,findpic,findtitle,findread,findcreate
+        from find
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from find where id=#{id}
+    </delete>
+
+    <update id="update" parameterType="com.javameizu.meizu.domain.Find">
+        update find
+        <set>
+            <if test="findread != null">
+                findread = #{findread},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>

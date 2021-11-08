@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javameizu.meizu.dao.HomeMapper">
+    <resultMap id="BaseResultMap" type="com.javameizu.meizu.domain.Home">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="money" jdbcType="VARCHAR" property="money"/>
+        <result column="homepic" jdbcType="VARCHAR" property="homepic"/>
+        <result column="homecreate" jdbcType="TIMESTAMP" property="homecreate"/>
+    </resultMap>
+    
+    <insert id="insert" parameterType="com.javameizu.meizu.domain.Home">
+        insert into home
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                id,
+            </if>
+            <if test="money!=null">
+                money,
+            </if>
+            <if test="homepic!=null">
+                homepic,
+            </if>
+            <if test="homecreate!=null">
+                homecreate,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+            <if test="money!=null">
+                #{money},
+            </if>
+            <if test="homepic!=null">
+                #{homepic},
+            </if>
+            <if test="homecreate!=null">
+                #{homecreate},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="allHome" resultMap="BaseResultMap">
+        select
+            id,money,homepic,homecreate
+        from home
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from home where id=#{id}
+    </delete>
+
+</mapper>

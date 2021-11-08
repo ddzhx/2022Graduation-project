@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javameizu.meizu.dao.FormMapper">
+    <resultMap id="BaseResultMap" type="com.javameizu.meizu.domain.Form">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="meform" jdbcType="VARCHAR" property="meform"/>
+        <result column="clform" jdbcType="VARCHAR" property="clform"/>
+        <result column="comname" jdbcType="VARCHAR" property="comname"/>
+        <result column="money" jdbcType="VARCHAR" property="money"/>
+        <result column="focreate" jdbcType="TIMESTAMP" property="focreate"/>
+    </resultMap>
+    
+    <insert id="insert" parameterType="com.javameizu.meizu.domain.Form">
+        insert into form
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                id,
+            </if>
+            <if test="meform!=null">
+                meform,
+            </if>
+            <if test="clform!=null">
+                clform,
+            </if>
+            <if test="comname!=null">
+                comname,
+            </if>
+            <if test="money!=null">
+                money,
+            </if>
+            focreate,
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+            <if test="meform!=null">
+                #{meform},
+            </if>
+            <if test="clform!=null">
+                #{clform},
+            </if>
+            <if test="comname!=null">
+                #{comname},
+            </if>
+            <if test="money!=null">
+                #{money},
+            </if>
+            now(),
+        </trim>
+    </insert>
+
+    <select id="allForm" resultMap="BaseResultMap">
+        select
+            id,meform,clform,comname,money,focreate
+        from form
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from form where id=#{id}
+    </delete>
+
+
+</mapper>

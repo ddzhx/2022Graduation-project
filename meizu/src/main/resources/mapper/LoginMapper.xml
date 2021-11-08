@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javameizu.meizu.dao.LoginMapper">
+    <resultMap id="BaseResultMap" type="com.javameizu.meizu.domain.Login">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="sex" jdbcType="TINYINT" property="sex"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="adderss" jdbcType="VARCHAR" property="adderss"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+    </resultMap>
+
+    <select id="verifyPassword" resultType="java.lang.Integer">
+        select count(*) from login where name=#{username} and password=#{password}
+    </select>
+
+    <select id="verifyUsername" resultType="java.lang.Integer">
+        select count(*) from login where name=#{username}
+    </select>
+
+    <insert id="insert" parameterType="com.javameizu.meizu.domain.Login">
+        insert into login
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name!=null">
+                name,
+            </if>
+            <if test="password!=null">
+                password,
+            </if>
+            <if test="sex!=null">
+                sex,
+            </if>
+            <if test="phone!=null">
+                phone,
+            </if>
+            <if test="adderss!=null">
+                adderss,
+            </if>
+            <if test="email!=null">
+                email,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name!=null">
+                #{name},
+            </if>
+            <if test="password!=null">
+                #{password},
+            </if>
+            <if test="sex!=null">
+                #{sex},
+            </if>
+            <if test="phone!=null">
+                #{phone},
+            </if>
+            <if test="adderss!=null">
+                #{adderss},
+            </if>
+            <if test="email!=null">
+                #{email},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.javameizu.meizu.domain.Login">
+        update login
+        <set>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="adderss != null">
+                adderss = #{adderss},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="alllogin" resultMap="BaseResultMap">
+        select
+            id,name,phone,adderss,email,sex
+        from login
+    </select>
+</mapper>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javameizu.meizu.dao.PddetailsMapper">
+    <resultMap id="BaseResultMap" type="com.javameizu.meizu.domain.Pddetails">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="pdname" jdbcType="VARCHAR" property="pdname"/>
+        <result column="pdpic" jdbcType="VARCHAR" property="pdpic"/>
+        <result column="pdprice" jdbcType="VARCHAR" property="pdprice"/>
+        <result column="pdcontext" jdbcType="VARCHAR" property="pdcontext"/>
+        <result column="pddate" jdbcType="TIMESTAMP" property="pddate"/>
+    </resultMap>
+    
+    <insert id="insert" parameterType="com.javameizu.meizu.domain.Pddetails">
+        insert into pddetails
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                id,
+            </if>
+            <if test="pdname!=null">
+                pdname,
+            </if>
+            <if test="pdpic!=null">
+                pdpic,
+            </if>
+            <if test="pdprice!=null">
+                pdprice,
+            </if>
+            <if test="pdcontext!=null">
+                pdcontext,
+            </if>
+            <if test="pddate!=null">
+                pddate,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+            <if test="pdname!=null">
+                #{pdname},
+            </if>
+            <if test="pdpic!=null">
+                #{pdpic},
+            </if>
+            <if test="pdprice!=null">
+                #{pdprice},
+            </if>
+            <if test="pdcontext!=null">
+                #{pdcontext},
+            </if>
+            <if test="pddate!=null">
+                #{pddate},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="allPddetails" resultMap="BaseResultMap">
+        select
+            id,pdname,pdpic,pdprice,pdcontext,pddate
+        from pddetails
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from pddetails where id=#{id}
+    </delete>
+
+</mapper>

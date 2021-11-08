@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javameizu.meizu.dao.CartMapper">
+    <resultMap id="BaseResultMap" type="com.javameizu.meizu.domain.Cart">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="crusername" jdbcType="VARCHAR" property="crusername"/>
+        <result column="crpic" jdbcType="VARCHAR" property="crpic"/>
+        <result column="crname" jdbcType="VARCHAR" property="crname"/>
+        <result column="crprice" jdbcType="VARCHAR" property="crprice"/>
+        <result column="crformat" jdbcType="VARCHAR" property="crformat"/>
+        <result column="crmunder" jdbcType="VARCHAR" property="crmunder"/>
+        <result column="isGoods" jdbcType="VARCHAR" property="isGoods"/>
+        <result column="createdate" jdbcType="TIMESTAMP" property="createdate"/>
+    </resultMap>
+    
+    <insert id="insert" parameterType="com.javameizu.meizu.domain.Cart">
+        insert into cart
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                id,
+            </if>
+            <if test="crusername!=null">
+                crusername,
+            </if>
+            <if test="crpic!=null">
+                crpic,
+            </if>
+            <if test="crname!=null">
+                crname,
+            </if>
+            <if test="crprice!=null">
+                crprice,
+            </if>
+            <if test="crformat!=null">
+                crformat,
+            </if>
+            <if test="isGoods!=null">
+                isGoods,
+            </if>
+            <if test="crmunder!=null">
+                crmunder,
+            </if>
+                createdate,
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+            <if test="crusername!=null">
+                #{crusername},
+            </if>
+            <if test="crpic!=null">
+                #{crpic},
+            </if>
+            <if test="crname!=null">
+                #{crname},
+            </if>
+            <if test="crprice!=null">
+                #{crprice},
+            </if>
+            <if test="crformat!=null">
+                #{crformat},
+            </if>
+            <if test="isGoods!=null">
+                #{isGoods},
+            </if>
+            <if test="crmunder!=null">
+                #{crmunder},
+            </if>
+            now(),
+        </trim>
+    </insert>
+
+    <select id="allCart" resultMap="BaseResultMap">
+        select
+            id,crusername,crpic,crname,crprice,crformat,crmunder,isGoods
+        from cart
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from cart where id=#{id}
+    </delete>
+
+    <update id="update" parameterType="com.javameizu.meizu.domain.Cart">
+        update cart
+        <set>
+            <if test="crmunder != null">
+                crmunder = #{crmunder},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javameizu.meizu.dao.SlideshowMapper">
+    <resultMap id="BaseResultMap" type="com.javameizu.meizu.domain.Slideshow">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="namepic" jdbcType="VARCHAR" property="namepic"/>
+        <result column="pic" jdbcType="VARCHAR" property="pic"/>
+        <result column="createdate" jdbcType="TIMESTAMP" property="createdate"/>
+    </resultMap>
+    
+    <insert id="insert" parameterType="com.javameizu.meizu.domain.Slideshow">
+        insert into slideshow
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                id,
+            </if>
+            <if test="namepic!=null">
+                namepic,
+            </if>
+            <if test="pic!=null">
+                pic,
+            </if>
+            <if test="createdate!=null">
+                createdate,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+            <if test="namepic!=null">
+                #{namepic},
+            </if>
+            <if test="pic!=null">
+                #{pic},
+            </if>
+            <if test="createdate!=null">
+                #{createdate},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="allSlideshow" resultMap="BaseResultMap">
+        select
+            id,namepic,pic,createdate
+        from slideshow
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from slideshow where id=#{id}
+    </delete>
+
+</mapper>
